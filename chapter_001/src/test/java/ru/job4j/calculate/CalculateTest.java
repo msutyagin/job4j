@@ -20,7 +20,7 @@ public class CalculateTest {
 	*/
 
 	@Test
-	public void whenTakeNameThenThreeEchoPlusName () {
+	public void whenTakeNameThenThreeEchoPlusName() {
 		
 		// Определяем переменную input, размещаем входящую строку
 		String input = "Maxim Sutyagin";
