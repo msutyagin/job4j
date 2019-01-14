@@ -2,7 +2,7 @@ package ru.job4j.loop;
 
 
 /**
- * Counter Class/
+ * Counter Class.
  * @author Maxim Sutyagin (m.sutyagin.m@gmail.com)
  * @since 14.01.19
  * @version 0.1
