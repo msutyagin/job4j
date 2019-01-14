@@ -41,4 +41,14 @@ public class MaxTest {
         assertThat(result, is(2));
     }
 
+    /**
+     * Test max(1, 2, 3) method.
+     */
+    @Test
+    public void whenSomeIsMax() {
+        Max maxim = new Max();
+        int result = maxim.max(3, 2, 1);
+        assertThat(result, is(3));
+    }
+
 }
