@@ -13,13 +13,10 @@ public class Check {
      * @return - true если в масиве все элементы одного типа, все true или все false. Иначе false
      */
     public boolean mono(boolean[] data) {
-        boolean result = false;
+        boolean result = true;
         for (int index = 0; index < data.length - 1; index++) {
-            if (data[index] == data[index + 1] && index + 1 < data.length) {
-                result = true;
-            } else {
+            if (data[index] != data[index + 1] && index + 1 < data.length) {
                 result = false;
-                break;
             }
         }
         return result;
