@@ -48,7 +48,7 @@ public class MatrixCheckTest {
         boolean[][] input = new boolean[][] {
                 {true, true, false, true},
                 {false, true, true, true},
-                {true, true, false, false},
+                {true, false, true, false},
                 {true, false, true, true}
         };
         boolean result = check.mono(input);
