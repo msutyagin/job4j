@@ -18,7 +18,6 @@ public class BubbleSort {
                     int temp = array[index];
                     array[index] = array[index + 1];
                     array[index + 1] = temp;
-                    j = 0;
                 }
             }
         }
