@@ -79,10 +79,13 @@ public class Logic {
                 if (table[row][cell] == table[row + 1][cell] && table[row][cell] == 1) {
                     isWinNumVertical++;
                 }
-                if (isWinNumHorizont == table.length - 1 || isWinNumVertical == table.length - 1) {
-                    result = true;
-                }
              }
+        }
+        if (isWinNumHorizont == table.length - 1 || isWinNumVertical == table.length - 1) {
+            result = true;
+        } else {
+            isWinNumHorizont = 0;
+            isWinNumVertical = 0;
         }
         return result;
     }
