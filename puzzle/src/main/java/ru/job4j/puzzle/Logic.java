@@ -70,17 +70,17 @@ public class Logic {
         int[][] table = this.convert();
         boolean result = false;
         for (int row = 0; row < table.length; row++) {
-            int isWinNumHorizont = 0;
-            int isWinNumVertical = 0;
+            int horizontal = 0;
+            int vertical = 0;
             for (int cell = 0; cell < table.length; cell++) {
                 if (table[row][cell] == 1) {
-                    isWinNumHorizont++;
+                    horizontal++;
                 }
                 if (table[cell][row] == 1) {
-                    isWinNumVertical++;
+                    vertical++;
                 }
              }
-            if (isWinNumHorizont == table.length || isWinNumVertical == table.length) {
+            if (horizontal == table.length || vertical == table.length) {
                 result = true;
             }
         }
