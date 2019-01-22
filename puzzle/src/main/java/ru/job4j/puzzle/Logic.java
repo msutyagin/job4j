@@ -69,24 +69,22 @@ public class Logic {
     public boolean isWin() {
         int[][] table = this.convert();
         boolean result = false;
-        int isWinNumHorizont = 0;
-        int isWinNumVertical = 0;
-        for (int row = 0; row != table.length - 1; row++) {
-            for (int cell = 0; cell != table.length - 1; cell++) {
-                if (table[row][cell] == table[row][cell + 1] && table[row][cell] == 1) {
+        for (int row = 0; row < table.length; row++) {
+            int isWinNumHorizont = 0;
+            int isWinNumVertical = 0;
+            for (int cell = 0; cell < table.length; cell++) {
+                if (table[row][cell] == 1) {
                     isWinNumHorizont++;
                 }
-                if (table[row][cell] == table[row + 1][cell] && table[row][cell] == 1) {
+                if (table[cell][row] == 1) {
                     isWinNumVertical++;
                 }
              }
+            if (isWinNumHorizont == table.length || isWinNumVertical == table.length) {
+                result = true;
+            }
         }
-        if (isWinNumHorizont == table.length - 1 || isWinNumVertical == table.length - 1) {
-            result = true;
-        } else {
-            isWinNumHorizont = 0;
-            isWinNumVertical = 0;
-        }
+
         return result;
     }
 
