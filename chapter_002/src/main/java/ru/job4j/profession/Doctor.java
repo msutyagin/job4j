@@ -1,7 +1,5 @@
 package ru.job4j.profession;
 
-import org.omg.CORBA.PUBLIC_MEMBER;
-
 /**
  * Doctor Class.
  * @author Maxim Sutyagin (m.sutyagin.m@gmail.com)
