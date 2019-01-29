@@ -67,13 +67,7 @@ public class Tracker {
      * @return - Все заявки.
      */
     public Item[] findAll() {
-        int count = 0;
-        for (int index = 0; index < this.items.length; index++) {
-            if (this.items[index] != null) {
-                count++;
-            }
-        }
-        return Arrays.copyOf(this.items, count);
+        return Arrays.copyOf(this.items, position);
     }
 
     /**
