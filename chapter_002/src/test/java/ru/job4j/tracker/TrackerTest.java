@@ -30,7 +30,6 @@ public class TrackerTest {
         // Создаем новую заявку.
         Item next = new Item("test2", "testDescription2", 1234L);
         // Проставляем старый id из previous, который был сгенерирован выше.
-        next.setId(previous.getId());
         // Обновляем заявку в трекере.
         tracker.replace(previous.getId(), next);
         // Проверяем, что заявка с таким id имеет новые имя test2.
@@ -105,5 +104,21 @@ public class TrackerTest {
         tracker.add(four);
         Item result = tracker.findById(one.getId());
         assertThat(result, is(one));
+    }
+
+    @Test
+    public void whenKnowIdButItIsNotFoundThenReturnNothing() {
+        Tracker tracker = new Tracker();
+        Item one = new Item("Task", "Desc1", 123L);
+        tracker.add(one);
+        Item two = new Item("Test2", "Desc2", 1234L);
+        tracker.add(two);
+        Item three = new Item("Task", "Desc3", 12345L);
+        tracker.add(three);
+        Item four = new Item("Task4", "Desc4", 123456L);
+        tracker.add(four);
+        Item result = tracker.findById("gdrger324234");
+        Item expected = null;
+        assertThat(result.getId(), is(expected));
     }
 }
