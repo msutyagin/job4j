@@ -26,6 +26,16 @@ public class Item {
     }
 
     /**
+     * Короткий констркутор.
+     * @param name - Название заявки.
+     * @param desc - Описание заявки.
+     */
+    public Item(String name, String desc) {
+        this.name = name;
+        this.description = desc;
+    }
+
+    /**
      * Геттер для получения id заявки.
      * @return - ID заявки.
      */
