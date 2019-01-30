@@ -1,6 +1,10 @@
 package ru.job4j.tracker;
 
-
+/**
+ * Класс отвечает за инициализацию и работу всего приложения. Основной класс приложения.
+ * @author Maxim Sutyagin (m.sutyagin.m@gmail.com)
+ * @version 0.1
+ */
 public class StartUI {
     /**
      * Константы меню
@@ -58,6 +62,9 @@ public class StartUI {
         }
     }
 
+    /**
+     * Метод отвечает за отрисовку меню
+     */
     private void showMenu() {
         System.out.println("Меню.");
         // добавить остальные пункты меню.
