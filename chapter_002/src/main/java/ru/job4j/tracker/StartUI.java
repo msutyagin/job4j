@@ -68,7 +68,7 @@ public class StartUI {
     private void showMenu() {
         System.out.println("Меню.");
         // добавить остальные пункты меню.
-        System.out.println("0. Добавление заяки");
+        System.out.println("0. Добавление заявки");
         System.out.println("1. Показать все заявки");
         System.out.println("2. Редактирование заявки");
         System.out.println("3. Удаление заявки");
@@ -160,8 +160,8 @@ public class StartUI {
         System.out.println("------------ Поиск заявок по названию--------------");
         String key = this.input.ask("Введите название заявки : ");
         if (this.tracker.findByName(key).length != 0) {
+            System.out.println("------------ Найдены заявки: -----------");
             for (int i = 0; i < this.tracker.findByName(key).length; i++) {
-                System.out.println("------------ Найдены заявки: -----------");
                 System.out.println("Id: " + this.tracker.findByName(key)[i].getId() + ", name: " + this.tracker.findByName(key)[i].getName() + ", description: " + this.tracker.findByName(key)[i].getDescription());
             }
         } else {
