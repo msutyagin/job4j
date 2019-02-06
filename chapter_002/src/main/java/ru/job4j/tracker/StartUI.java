@@ -1,5 +1,8 @@
 package ru.job4j.tracker;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Класс отвечает за инициализацию и работу всего приложения. Основной класс приложения.
  * @author Maxim Sutyagin (m.sutyagin.m@gmail.com)
@@ -24,6 +27,7 @@ public class StartUI {
      * Хранилище заявок.
      */
     private final Tracker tracker;
+
     /**
      * Конструтор инициализирующий поля.
      * @param input ввод данных.
@@ -39,10 +43,14 @@ public class StartUI {
      */
     public void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
+        List<Integer> range = new ArrayList<>();
         menu.fillActions();
+        for (int i = 0; i < menu.getActionsLentgh(); i++) {
+            range.add(i);
+        }
         do {
             menu.show();
-            menu.select(Integer.valueOf(input.ask("Выбирите пункт меню: ")));
+            menu.select(input.ask("Выбирите пункт меню: ", range));
         } while (!"y".equals(this.input.ask("Выйти из программы (y / n): ")));
     }
 
@@ -51,7 +59,7 @@ public class StartUI {
      * @param args аргументы.
      */
     public static void main(String[] args) {
-        new StartUI(new ConsoleInput(), new Tracker()).init();
+        new StartUI(new ValidateInput(), new Tracker()).init();
     }
 
     /**
