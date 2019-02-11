@@ -17,6 +17,8 @@ public class StubInput implements Input {
 
     @Override
     public int ask(String question, List<Integer> range) {
-        return Integer.valueOf(this.answers[this.position++]);
+        int key = Integer.valueOf(this.answers[this.position++]);
+        MenuOutException.exist(key, range);
+        return key;
     }
 }

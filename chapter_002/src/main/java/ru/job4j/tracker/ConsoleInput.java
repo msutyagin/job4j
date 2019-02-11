@@ -24,21 +24,12 @@ public class ConsoleInput implements Input {
      * @param question - Вопрос в ответ на который пользователь вводит данные.
      * @param range - Диапозон допустимых значений ввода.
      * @return - преобразованное в число введенное значение или исключение.
-     * @throws NumberFormatException
-     * @throws MenuOutException
+     * @throws NumberFormatException - Ошибка при вводе не числа.
+     * @throws MenuOutException - Ошибка при вводе числа за пределами диапазона меню.
      */
     public int ask(String question, List<Integer> range) throws NumberFormatException, MenuOutException {
         int key = Integer.valueOf(this.ask(question));
-        boolean exist = false;
-        for (int value : range) {
-            if (value == key) {
-                exist = true;
-                break;
-            }
-        }
-        if (!exist) {
-            throw new MenuOutException("Введите число, которое соответствует меню.");
-        }
+        MenuOutException.exist(key, range);
         return key;
     }
 }
