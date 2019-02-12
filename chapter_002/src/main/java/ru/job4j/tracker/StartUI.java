@@ -65,10 +65,10 @@ public class StartUI {
     /**
      * Внутренний класс реализует добавленяи новый заявки в хранилище.
      */
-    public static class AddItem implements UserAction {
-        @Override
-        public int key() {
-            return ADD;
+    public static class AddItem extends BaseAction {
+
+        public AddItem(int key, String name) {
+            super(key, name);
         }
 
         @Override
@@ -82,20 +82,15 @@ public class StartUI {
             System.out.println("------------ Имя новой заявки : " + item.getName() + " ------------");
             System.out.println("------------ Описание новой заявки : " + item.getDescription() + " ------------");
         }
-
-        @Override
-        public String info() {
-            return "0. Добавление заявки";
-        }
     }
 
     /**
      * Внутренний класс реализует поиск и вывод всех заявок.
      */
-    public static class ShowAllItems implements UserAction {
-        @Override
-        public int key() {
-            return SHOWALL;
+    public static class ShowAllItems extends BaseAction {
+
+        public ShowAllItems(int key, String name) {
+            super(key, name);
         }
 
         @Override
@@ -107,20 +102,15 @@ public class StartUI {
                 System.out.println("Id: " + result[i].getId() + ", name: " + result[i].getName() + ", description: " + result[i].getDescription());
             }
         }
-
-        @Override
-        public String info() {
-            return "1. Показать все заявки";
-        }
     }
 
     /**
      * Внутренний класс реализует редактирование заявки.
      */
-    public static class EditItem implements UserAction {
-        @Override
-        public int key() {
-            return EDIT;
+    public static class EditItem extends BaseAction {
+
+        public EditItem(int key, String name) {
+            super(key, name);
         }
 
         @Override
@@ -136,20 +126,15 @@ public class StartUI {
                 System.out.println("------------ Заявка с Id : " + item.getId() + " не найдена-----------");
             }
         }
-
-        @Override
-        public String info() {
-            return "2. Редактирование заявки";
-        }
     }
 
     /**
      * Внутренний класс реализует удаление заявки.
      */
-    public static class DeleteItem implements UserAction {
-        @Override
-        public int key() {
-            return DELETE;
+    public static class DeleteItem extends BaseAction {
+
+        public DeleteItem(int key, String name) {
+            super(key, name);
         }
 
         @Override
@@ -162,20 +147,15 @@ public class StartUI {
                 System.out.println("------------ Заявка с Id : " + id + " не найдена-----------");
             }
         }
-
-        @Override
-        public String info() {
-            return "3. Удаление заявки";
-        }
     }
 
     /**
      * Внутренний класс реализует вывод на эакран заявки по Id.
      */
-    public static class FindById implements UserAction {
-        @Override
-        public int key() {
-            return FINDID;
+    public static class FindById extends BaseAction {
+
+        public FindById(int key, String name) {
+            super(key, name);
         }
 
         @Override
@@ -190,19 +170,15 @@ public class StartUI {
                 System.out.println("------------ Заявка с Id : " + id + " не найдена-----------");
             }
         }
-
-        @Override
-        public String info() {
-            return "4. Найти заявку по Id";
-        }
     }
+
     /**
      * Внутренний класс реализует вывод на эакран заявки по имени.
      */
-    public static class FindByName implements UserAction {
-        @Override
-        public int key() {
-            return FINDNAME;
+    public static class FindByName extends BaseAction {
+
+        public FindByName(int key, String name) {
+            super(key, name);
         }
 
         @Override
@@ -218,28 +194,18 @@ public class StartUI {
                 System.out.println("------------ Заявка с name : " + key + " не найдена-----------");
             }
         }
-
-        @Override
-        public String info() {
-            return "5. Найти заявки по имени";
-        }
     }
     /**
      * Внутренний класс реализует выход из программы.
      */
-    public static class Exit implements UserAction {
-        @Override
-        public int key() {
-            return EXIT;
+    public static class Exit extends BaseAction {
+
+        public Exit(int key, String name) {
+            super(key, name);
         }
 
         @Override
         public void execute(Input input, Tracker tracker) {
-        }
-
-        @Override
-        public String info() {
-            return "6. Выход";
         }
     }
 }
