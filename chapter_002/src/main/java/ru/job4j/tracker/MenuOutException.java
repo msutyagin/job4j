@@ -8,7 +8,7 @@ public class MenuOutException extends RuntimeException  {
         super(msg);
     }
 
-    public static void exist (int key, List<Integer> range) {
+    public static void exist(int key, List<Integer> range) {
         boolean exist = false;
         for (int value : range) {
             if (value == key) {
