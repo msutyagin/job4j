@@ -10,16 +10,6 @@ import java.util.List;
  */
 public class StartUI {
     /**
-     * Константы меню
-     */
-    private static final int ADD = 0;
-    private static final int SHOWALL = 1;
-    private static final int EDIT = 2;
-    private static final int DELETE = 3;
-    private static final int FINDID = 4;
-    private static final int FINDNAME = 5;
-    private static final int EXIT = 6;
-    /**
      * Получение данных от пользователя.
      */
     private final Input input;
