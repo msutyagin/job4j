@@ -4,12 +4,13 @@ public abstract class BaseAction implements UserAction {
     private final int key;
     private final String name;
 
+    BaseAction() {}
     /**
      * Конструктор класса. Принимает параметры, передаваемые при создании объекта из класса, реализующего интерфейс UserAction.
      * @param key - ключ пункта меню.
      * @param name - Имя пункта меню.
      */
-    protected BaseAction(final int key, final String name) {
+    public BaseAction(final int key, final String name) {
         this.key = key;
         this.name = name;
     }

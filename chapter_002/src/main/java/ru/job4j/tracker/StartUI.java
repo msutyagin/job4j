@@ -9,6 +9,9 @@ import java.util.List;
  * @version 0.1
  */
 public class StartUI {
+    private boolean working = true;
+
+
     /**
      * Получение данных от пользователя.
      */
@@ -29,6 +32,13 @@ public class StartUI {
     }
 
     /**
+     * Сеттер для working
+     */
+    public void stop () {
+        this.working = false;
+    }
+
+    /**
      * Основой цикл программы.
      */
     public void init() {
@@ -41,7 +51,7 @@ public class StartUI {
         do {
             menu.show();
             menu.select(input.ask("Выбирите пункт меню: ", range));
-        } while (!"y".equals(this.input.ask("Выйти из программы (y / n): ")));
+        } while (this.working);
     }
 
     /**
@@ -189,6 +199,11 @@ public class StartUI {
      * Внутренний класс реализует выход из программы.
      */
     public static class Exit extends BaseAction {
+        private StartUI ui;
+
+        public Exit (StartUI ui) {
+            this.ui = ui;
+        }
 
         public Exit(int key, String name) {
             super(key, name);
@@ -196,6 +211,8 @@ public class StartUI {
 
         @Override
         public void execute(Input input, Tracker tracker) {
+            System.out.println("Выбран пункт меню 6. Выход из программы. До свидания");
+            this.ui.stop();
         }
     }
 }
