@@ -199,7 +199,7 @@ public class StartUI {
      * Внутренний класс реализует выход из программы.
      */
     public static class Exit extends BaseAction {
-        private StartUI ui;
+        private final StartUI ui;
 
        public Exit(int key, String name, StartUI ui) {
             super(key, name);
