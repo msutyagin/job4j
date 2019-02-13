@@ -1,16 +1,17 @@
 package ru.job4j.tracker;
 
 public abstract class BaseAction implements UserAction {
-    private final int key;
-    private final String name;
+    private int key;
+    private String name;
 
-    BaseAction() {}
+    BaseAction() {
+    }
     /**
      * Конструктор класса. Принимает параметры, передаваемые при создании объекта из класса, реализующего интерфейс UserAction.
      * @param key - ключ пункта меню.
      * @param name - Имя пункта меню.
      */
-    public BaseAction(final int key, final String name) {
+    protected BaseAction(final int key, final String name) {
         this.key = key;
         this.name = name;
     }

@@ -34,7 +34,7 @@ public class StartUI {
     /**
      * Сеттер для working
      */
-    public void stop () {
+    public void stop() {
         this.working = false;
     }
 
@@ -44,7 +44,7 @@ public class StartUI {
     public void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
         List<Integer> range = new ArrayList<>();
-        menu.fillActions();
+        menu.fillActions(this);
         for (int i = 0; i < menu.getActionsLentgh(); i++) {
             range.add(i);
         }
@@ -201,12 +201,9 @@ public class StartUI {
     public static class Exit extends BaseAction {
         private StartUI ui;
 
-        public Exit (StartUI ui) {
-            this.ui = ui;
-        }
-
-        public Exit(int key, String name) {
+       public Exit(int key, String name, StartUI ui) {
             super(key, name);
+            this.ui = ui;
         }
 
         @Override
