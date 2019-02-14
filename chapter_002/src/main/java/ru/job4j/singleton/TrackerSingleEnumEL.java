@@ -1,14 +1,10 @@
-package ru.job4j.tracker;
+package ru.job4j.singleton;
 
-public class TrackerSingleStaticFinalFieldEL {
-    private static final TrackerSingleStaticFinalFieldEL INSTANCE = new TrackerSingleStaticFinalFieldEL();
+import ru.job4j.tracker.Item;
+import ru.job4j.tracker.Tracker;
 
-    private TrackerSingleStaticFinalFieldEL() {
-    }
-
-    public static TrackerSingleStaticFinalFieldEL getInstance() {
-        return INSTANCE;
-    }
+public enum  TrackerSingleEnumEL {
+    INSTANCE;
 
     private final Tracker tracker = new Tracker();
 

@@ -1,4 +1,7 @@
-package ru.job4j.tracker;
+package ru.job4j.singleton;
+
+import ru.job4j.tracker.Item;
+import ru.job4j.tracker.Tracker;
 
 public class TrackerSinglePrivateStaticFinalClassLL {
 
