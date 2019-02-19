@@ -43,8 +43,8 @@ public class BishopBlack implements Figure {
             throw new ImpossibleMoveException("Слон ходит только по диагонали!");
         }
         Cell[] steps = new Cell[Math.abs((dest.x - source.x))];
-        int deltaX = dest.x - source.x;
-        int deltaY = dest.y - source.y;
+        int deltaX = source.x < dest.x ? 1 : -1;
+        int deltaY = source.y < dest.y ? 1 : -1;
         for (int i = 0; i < steps.length; i++) {
             if (deltaX < 0 && deltaY < 0) {
                 steps[i] = Cell.values()[(source.x - (i + 1)) * 8 + (source.y - (i + 1))];

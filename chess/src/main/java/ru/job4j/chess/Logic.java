@@ -36,7 +36,7 @@ public class Logic {
     public boolean move(Cell source, Cell dest) throws ImpossibleMoveException, OccupiedWayException, FigureNotFoundException {
         boolean rst = false;
         int index = this.findBy(source);
-        try {
+     //   try {
             if (index == -1) {
                 throw new FigureNotFoundException("Фигура не найдена!");
             }
@@ -55,13 +55,13 @@ public class Logic {
             }
             rst = true;
             this.figures[index] = this.figures[index].copy(dest);
-        } catch (ImpossibleMoveException ime) {
-            System.out.println("Фигура не может быть перемещена таким образом!");
-        } catch (OccupiedWayException owe) {
-            System.out.println("Фигура не может проходить сквозь клетки, занятые другими фигурами!");
-        } catch (FigureNotFoundException fnfe) {
-            System.out.println("Фигура не найдена!");
-        }
+//        } catch (ImpossibleMoveException ime) {
+//            System.out.println("Фигура не может быть перемещена таким образом!");
+//        } catch (OccupiedWayException owe) {
+//            System.out.println("Фигура не может проходить сквозь клетки, занятые другими фигурами!");
+//        } catch (FigureNotFoundException fnfe) {
+//            System.out.println("Фигура не найдена!");
+//        }
         return rst;
     }
 
