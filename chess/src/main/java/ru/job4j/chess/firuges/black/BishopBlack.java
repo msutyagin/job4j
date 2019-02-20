@@ -46,16 +46,16 @@ public class BishopBlack implements Figure {
         int deltaX = source.x < dest.x ? 1 : -1;
         int deltaY = source.y < dest.y ? 1 : -1;
         for (int i = 0; i < steps.length; i++) {
-            if (deltaX < 0 && deltaY < 0) {
+            if (deltaX == -1 && deltaY == -1) {
                 steps[i] = Cell.values()[(source.x - (i + 1)) * 8 + (source.y - (i + 1))];
             }
-            if (deltaX > 0 && deltaY < 0) {
+            if (deltaX == 1 && deltaY == -1) {
                 steps[i] = Cell.values()[(source.x + (i + 1)) * 8 + (source.y - (i + 1))];
             }
-            if (deltaX > 0 && deltaY > 0) {
+            if (deltaX == 1 && deltaY == 1) {
                 steps[i] = Cell.values()[(source.x + (i + 1)) * 8 + (source.y + (i + 1))];
             }
-            if (deltaX < 0 && deltaY > 0) {
+            if (deltaX == -1 && deltaY == 1) {
                 steps[i] = Cell.values()[(source.x - (i + 1)) * 8 + (source.y + (i + 1))];
             }
         }
