@@ -36,32 +36,19 @@ public class Logic {
     public boolean move(Cell source, Cell dest) throws ImpossibleMoveException, OccupiedWayException, FigureNotFoundException {
         boolean rst = false;
         int index = this.findBy(source);
-     //   try {
-            if (index == -1) {
-                throw new FigureNotFoundException("Фигура не найдена!");
-            }
-            Cell[] steps = this.figures[index].way(source, dest);
-            for (int i = 0; i < steps.length; i++) {
-                for (int j = 0; j != this.figures.length; j++) {
-                    if (this.figures[j] != null && steps[i] == this.figures[j].position()) {
-                        //           this.figures[index] = this.figures[index].copy(source);
-                        throw new OccupiedWayException("Фигура не может проходить сквозь клетки, занятые другими фигурами");
-                    }
+        if (index == -1) {
+            throw new FigureNotFoundException("Фигура не найдена!");
+        }
+        Cell[] steps = this.figures[index].way(source, dest);
+        for (int i = 0; i < steps.length; i++) {
+            for (int j = 0; j != this.figures.length; j++) {
+                if (this.figures[j] != null && steps[i] == this.figures[j].position()) {
+                    throw new OccupiedWayException("Фигура не может проходить сквозь клетки, занятые другими фигурами");
                 }
             }
-            if (steps.length <= 0 || !steps[steps.length - 1].equals(dest)) {
-                //    this.figures[index] = this.figures[index].copy(source);
-                throw new ImpossibleMoveException("Фигура не может быть перемещена таким образом!");
-            }
-            rst = true;
-            this.figures[index] = this.figures[index].copy(dest);
-//        } catch (ImpossibleMoveException ime) {
-//            System.out.println("Фигура не может быть перемещена таким образом!");
-//        } catch (OccupiedWayException owe) {
-//            System.out.println("Фигура не может проходить сквозь клетки, занятые другими фигурами!");
-//        } catch (FigureNotFoundException fnfe) {
-//            System.out.println("Фигура не найдена!");
-//        }
+        }
+        rst = true;
+        this.figures[index] = this.figures[index].copy(dest);
         return rst;
     }
 
