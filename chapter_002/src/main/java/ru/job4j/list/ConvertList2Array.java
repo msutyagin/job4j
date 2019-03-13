@@ -1,5 +1,6 @@
 package ru.job4j.list;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,5 +35,20 @@ public class ConvertList2Array {
             j++;
         }
         return array;
+    }
+    /**
+     * Метод преобразует список List, элементами которого являются массивы разной длины в один общий,
+     * плоский список элементов.
+     * @param list - Исходный список массивов.
+     * @return - Итоговый прослкий список.
+     */
+    public List<Integer> convert(List<int[]> list) {
+        List<Integer> result = new ArrayList<>();
+        for (int[] array : list) {
+            for (int i = 0; i < array.length; i++) {
+                result.add(array[i]);
+            }
+        }
+        return result;
     }
 }
