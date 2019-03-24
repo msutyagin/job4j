@@ -96,10 +96,11 @@ public class StartUI {
         @Override
         public void execute(Input input, Tracker tracker) {
             System.out.println("------------ Вывод всех заявок --------------");
-            Item[] result = tracker.findAll();
-            for (int i = 0; i < result.length; i++) {
-                System.out.println("------------ заявка " + i + " : -----------");
-                System.out.println("Id: " + result[i].getId() + ", name: " + result[i].getName() + ", description: " + result[i].getDescription());
+            List<Item> result = tracker.findAll();
+            int i = 0;
+            for (Item el : result) {
+                System.out.println("------------ заявка " + i++ + " : -----------");
+                System.out.println("Id: " + el.getId() + ", name: " + el.getName() + ", description: " + el.getDescription());
             }
         }
     }
@@ -185,10 +186,10 @@ public class StartUI {
         public void execute(Input input, Tracker tracker) {
             System.out.println("------------ Поиск заявок по названию--------------");
             String key = input.ask("Введите название заявки : ");
-            if (tracker.findByName(key).length != 0) {
+            if (!tracker.findByName(key).isEmpty()) {
                 System.out.println("------------ Найдены заявки: -----------");
-                for (int i = 0; i < tracker.findByName(key).length; i++) {
-                    System.out.println("Id: " + tracker.findByName(key)[i].getId() + ", name: " + tracker.findByName(key)[i].getName() + ", description: " + tracker.findByName(key)[i].getDescription());
+                for (Item el : tracker.findByName(key)) {
+                    System.out.println("Id: " + el.getId() + ", name: " + el.getName() + ", description: " + el.getDescription());
                 }
             } else {
                 System.out.println("------------ Заявка с name : " + key + " не найдена-----------");

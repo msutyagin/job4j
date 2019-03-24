@@ -64,7 +64,7 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Input input = new StubInput(new String[]{"0", "test1", "desc1", "6"});
         new StartUI(input, tracker).init();
-        assertThat(tracker.findAll()[0].getName(), is("test1"));
+        assertThat(tracker.findAll().get(tracker.findAll().size() - 1).getName(), is("test1"));
     }
 
     /**
@@ -94,7 +94,7 @@ public class StartUITest {
         Item item2 = tracker.add(new Item("test2", "desc2"));
         Input input = new StubInput(new String[]{"3", item2.getId(), "6"});
         new StartUI(input, tracker).init();
-        assertThat(tracker.findAll().length, is(1));
+        assertThat(tracker.findAll().size(), is(1));
     }
 
     /**
@@ -116,7 +116,7 @@ public class StartUITest {
                                 .append(System.lineSeparator())
                                 .append("------------ заявка 0 : -----------")
                                 .append(System.lineSeparator())
-                                .append("Id: " + tracker.findAll()[0].getId() + ", name: " + tracker.findAll()[0].getName() + ", description: " + tracker.findAll()[0].getDescription())
+                                .append("Id: " + tracker.findAll().get(0).getId() + ", name: " + tracker.findAll().get(0).getName() + ", description: " + tracker.findAll().get(0).getDescription())
                                 .append(System.lineSeparator())
                                 .append(MENU)
                                 .append(System.lineSeparator())
@@ -134,7 +134,7 @@ public class StartUITest {
     public void whenChooseFindItemByIdThenShowIt() {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("Test1", "Desc1"));
-        Input input = new StubInput(new String[]{"4", tracker.findAll()[0].getId(), "6"});
+        Input input = new StubInput(new String[]{"4", tracker.findAll().get(0).getId(), "6"});
         new StartUI(input, tracker).init();
         assertThat(
                 new String(out.toByteArray()),
@@ -144,9 +144,9 @@ public class StartUITest {
                                 .append(System.lineSeparator())
                                 .append("------------ Поиск заявки по Id--------------")
                                 .append(System.lineSeparator())
-                                .append("------------ Заявка с Id : " + tracker.findAll()[0].getId() + " найдена-----------")
+                                .append("------------ Заявка с Id : " + tracker.findAll().get(0).getId() + " найдена-----------")
                                 .append(System.lineSeparator())
-                                .append("Id: " + tracker.findAll()[0].getId() + ", name: " + tracker.findAll()[0].getName() + ", description: " + tracker.findAll()[0].getDescription())
+                                .append("Id: " + tracker.findAll().get(0).getId() + ", name: " + tracker.findAll().get(0).getName() + ", description: " + tracker.findAll().get(0).getDescription())
                                 .append(System.lineSeparator())
                                 .append(MENU)
                                 .append(System.lineSeparator())
@@ -177,9 +177,9 @@ public class StartUITest {
                                 .append(System.lineSeparator())
                                 .append("------------ Найдены заявки: -----------")
                                 .append(System.lineSeparator())
-                                .append("Id: " + tracker.findAll()[0].getId() + ", name: " + tracker.findAll()[0].getName() + ", description: " + tracker.findAll()[0].getDescription())
+                                .append("Id: " + tracker.findAll().get(0).getId() + ", name: " + tracker.findAll().get(0).getName() + ", description: " + tracker.findAll().get(0).getDescription())
                                 .append(System.lineSeparator())
-                                .append("Id: " + tracker.findAll()[1].getId() + ", name: " + tracker.findAll()[1].getName() + ", description: " + tracker.findAll()[1].getDescription())
+                                .append("Id: " + tracker.findAll().get(1).getId() + ", name: " + tracker.findAll().get(1).getName() + ", description: " + tracker.findAll().get(1).getDescription())
                                 .append(System.lineSeparator())
                                 .append(MENU)
                                 .append(System.lineSeparator())

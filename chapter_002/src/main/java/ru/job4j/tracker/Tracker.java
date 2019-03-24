@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.Arrays;
 
 public class Tracker {
-    private final Item[] items = new Item[100];
+    private final List<Item> items = new ArrayList<>();
     private int position = 0;
     private final static Random RN = new Random();
 
@@ -23,7 +23,7 @@ public class Tracker {
      */
     public Item add(Item item) {
         item.setId(this.generateId());
-        this.items[this.position++] = item;
+        this.items.add(item);
         return item;
     }
 
@@ -36,9 +36,10 @@ public class Tracker {
     public boolean replace(String id, Item item) {
         boolean result = false;
         item.setId(id);
-        for (int index = 0; index < this.position; index++) {
-            if (id.equals(this.items[index].getId())) {
-                this.items[index] = item;
+        for (Item el : this.items) {
+            if (id.equals(el.getId())) {
+                int index = this.items.indexOf(el);
+                this.items.set(index, item);
                 result = true;
                 break;
             }
@@ -53,10 +54,9 @@ public class Tracker {
      */
     public boolean delete(String id) {
         boolean result = false;
-        for (int index = 0; index < this.position; index++) {
-            if (this.items[index].getId().equals(id)) {
-                System.arraycopy(this.items, index + 1, this.items, index, this.items.length - index - 1);
-                this.position--;
+        for (Item el : this.items) {
+            if (el.getId().equals(id)) {
+                this.items.remove(el);
                 result = true;
                 break;
             }
@@ -68,8 +68,8 @@ public class Tracker {
      * Находит все элементы массива.
      * @return - Все заявки.
      */
-    public Item[] findAll() {
-        return Arrays.copyOf(this.items, position);
+    public List<Item> findAll() {
+        return this.items;
     }
 
     /**
@@ -77,16 +77,13 @@ public class Tracker {
      * @param key - Имя для поиска.
      * @return - Массив найденных элементов.
      */
-    public Item[] findByName(String key) {
-        Item[] result = new Item[this.items.length];
-        int count = 0;
-        for (int index = 0; index < this.position; index++) {
-            if (this.items[index].getName().equals(key)) {
-                result[count] = this.items[index];
-                count++;
+    public List<Item> findByName(String key) {
+        List<Item> result = new ArrayList<>();
+        for (Item el : this.items) {
+            if (el.getName().equals(key)) {
+                result.add(el);
             }
         }
-        result = Arrays.copyOf(result, count);
         return result;
     }
 
@@ -97,9 +94,9 @@ public class Tracker {
      */
     public Item findById(String id) {
         Item result = new Item();
-        for (int index = 0; index < this.position; index++) {
-            if (this.items[index].getId().equals(id)) {
-                result = this.items[index];
+        for (Item el : this.items) {
+            if (el.getId().equals(id)) {
+                result = el;
                 break;
             }
         }
