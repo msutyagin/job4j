@@ -17,22 +17,13 @@ public class ConvertList2Array {
     public int[][] toArray(List<Integer> list, int rows) {
         int cells = list.size() / rows + 1;
         int[][] array = new int[rows][cells];
-        int i = 0, j = 0, k = 0;
-        for (int[] row : array) {
-            for (int cell : row) {
-                if (k < list.size()) {
-                    array[j][i] = list.get(k);
-                    i++;
-                    k++;
-                    if (i == cells) {
-                        i = 0;
-                    }
-                } else {
-                    array[j][i] = 0;
-                    i++;
-                }
+        int i = 0, j = 0;
+        for (Integer el : list) {
+            array[i][j++] = el;
+            if (j == array[i].length) {
+                i++;
+                j=0;
             }
-            j++;
         }
         return array;
     }
