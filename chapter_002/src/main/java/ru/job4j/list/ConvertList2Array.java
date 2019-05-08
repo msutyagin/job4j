@@ -22,7 +22,7 @@ public class ConvertList2Array {
             array[i][j++] = el;
             if (j == array[i].length) {
                 i++;
-                j=0;
+                j = 0;
             }
         }
         return array;
