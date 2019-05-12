@@ -9,3 +9,7 @@
 
 
 Изменения для ветки task_124176.
+
+[![Build Status](https://travis-ci.org/msutyagin/job4j.svg?branch=master)](https://travis-ci.org/msutyagin/job4j)
+
+[![codecov](https://codecov.io/gh/msutyagin/job4j/branch/master/graph/badge.svg)](https://codecov.io/gh/msutyagin/job4j)
