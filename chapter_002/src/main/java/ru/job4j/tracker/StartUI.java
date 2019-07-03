@@ -2,6 +2,7 @@ package ru.job4j.tracker;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * Класс отвечает за инициализацию и работу всего приложения. Основной класс приложения.
@@ -10,8 +11,6 @@ import java.util.List;
  */
 public class StartUI {
     private boolean working = true;
-
-
     /**
      * Получение данных от пользователя.
      */
@@ -21,14 +20,17 @@ public class StartUI {
      */
     private final Tracker tracker;
 
+    private final Consumer<String> output;
+
     /**
      * Конструтор инициализирующий поля.
      * @param input ввод данных.
      * @param tracker хранилище заявок.
      */
-    public StartUI(Input input, Tracker tracker) {
+    public StartUI(Input input, Tracker tracker, Consumer<String> output) {
         this.input = input;
         this.tracker = tracker;
+        this.output = output;
     }
 
     /**
@@ -42,7 +44,7 @@ public class StartUI {
      * Основой цикл программы.
      */
     public void init() {
-        MenuTracker menu = new MenuTracker(this.input, this.tracker);
+        MenuTracker menu = new MenuTracker(this.input, this.tracker, this.output);
         List<Integer> range = new ArrayList<>();
         menu.fillActions(this);
         for (int i = 0; i < menu.getActionsLentgh(); i++) {
@@ -59,13 +61,13 @@ public class StartUI {
      * @param args аргументы.
      */
     public static void main(String[] args) {
-        new StartUI(new ValidateInput(new ConsoleInput()), new Tracker()).init();
+        new StartUI(new ValidateInput(new ConsoleInput()), new Tracker(), System.out::println).init();
     }
-
-    /**
+/*
+    *//**
      * Внутренний класс реализует добавленяи новый заявки в хранилище.
-     */
-    public static class AddItem extends BaseAction {
+     *//*
+    public class AddItem extends BaseAction {
 
         public AddItem(int key, String name) {
             super(key, name);
@@ -73,21 +75,21 @@ public class StartUI {
 
         @Override
         public void execute(Input input, Tracker tracker) {
-            System.out.println("------------ Добавление новой заявки --------------");
+            output.accept("------------ Добавление новой заявки --------------");
             String name = input.ask("Введите имя заявки :");
             String desc = input.ask("Введите описание заявки :");
             Item item = new Item(name, desc);
             tracker.add(item);
-            System.out.println("------------ Новая заявка с id : " + item.getId() + " -----------");
-            System.out.println("------------ Имя новой заявки : " + item.getName() + " ------------");
-            System.out.println("------------ Описание новой заявки : " + item.getDescription() + " ------------");
+            output.accept("------------ Новая заявка с id : " + item.getId() + " -----------");
+            output.accept("------------ Имя новой заявки : " + item.getName() + " ------------");
+            output.accept("------------ Описание новой заявки : " + item.getDescription() + " ------------");
         }
-    }
-
-    /**
+    }*/
+/*
+    *//**
      * Внутренний класс реализует поиск и вывод всех заявок.
-     */
-    public static class ShowAllItems extends BaseAction {
+     *//*
+    public class ShowAllItems extends BaseAction {
 
         public ShowAllItems(int key, String name) {
             super(key, name);
@@ -103,12 +105,12 @@ public class StartUI {
                 System.out.println("Id: " + el.getId() + ", name: " + el.getName() + ", description: " + el.getDescription());
             }
         }
-    }
-
-    /**
+    }*/
+/*
+    *//**
      * Внутренний класс реализует редактирование заявки.
-     */
-    public static class EditItem extends BaseAction {
+     *//*
+    public class EditItem extends BaseAction {
 
         public EditItem(int key, String name) {
             super(key, name);
@@ -127,12 +129,12 @@ public class StartUI {
                 System.out.println("------------ Заявка с Id : " + item.getId() + " не найдена-----------");
             }
         }
-    }
+    }*/
 
-    /**
+/*    *//**
      * Внутренний класс реализует удаление заявки.
-     */
-    public static class DeleteItem extends BaseAction {
+     *//*
+    public class DeleteItem extends BaseAction {
 
         public DeleteItem(int key, String name) {
             super(key, name);
@@ -148,35 +150,35 @@ public class StartUI {
                 System.out.println("------------ Заявка с Id : " + id + " не найдена-----------");
             }
         }
-    }
+    }*/
 
-    /**
-     * Внутренний класс реализует вывод на эакран заявки по Id.
-     */
-    public static class FindById extends BaseAction {
-
-        public FindById(int key, String name) {
-            super(key, name);
-        }
-
-        @Override
-        public void execute(Input input, Tracker tracker) {
-            System.out.println("------------ Поиск заявки по Id--------------");
-            String id = input.ask("Введите Id заявки : ");
-            Item result = tracker.findById(id);
-            if (result.getId() != null && result.getId().equals(id)) {
-                System.out.println("------------ Заявка с Id : " + id + " найдена-----------");
-                System.out.println("Id: " + result.getId() + ", name: " + result.getName() + ", description: " + result.getDescription());
-            } else {
-                System.out.println("------------ Заявка с Id : " + id + " не найдена-----------");
-            }
-        }
-    }
-
-    /**
+//    /**
+//     * Внутренний класс реализует вывод на эакран заявки по Id.
+//     */
+//    public class FindById extends BaseAction {
+//
+//        public FindById(int key, String name) {
+//            super(key, name);
+//        }
+//
+//        @Override
+//        public void execute(Input input, Tracker tracker) {
+//            System.out.println("------------ Поиск заявки по Id--------------");
+//            String id = input.ask("Введите Id заявки : ");
+//            Item result = tracker.findById(id);
+//            if (result.getId() != null && result.getId().equals(id)) {
+//                System.out.println("------------ Заявка с Id : " + id + " найдена-----------");
+//                System.out.println("Id: " + result.getId() + ", name: " + result.getName() + ", description: " + result.getDescription());
+//            } else {
+//                System.out.println("------------ Заявка с Id : " + id + " не найдена-----------");
+//            }
+//        }
+//    }
+/*
+    *//**
      * Внутренний класс реализует вывод на эакран заявки по имени.
-     */
-    public static class FindByName extends BaseAction {
+     *//*
+    public class FindByName extends BaseAction {
 
         public FindByName(int key, String name) {
             super(key, name);
@@ -195,11 +197,12 @@ public class StartUI {
                 System.out.println("------------ Заявка с name : " + key + " не найдена-----------");
             }
         }
-    }
-    /**
+    }*/
+/*
+    *//**
      * Внутренний класс реализует выход из программы.
-     */
-    public static class Exit extends BaseAction {
+     *//*
+    public class Exit extends BaseAction {
         private final StartUI ui;
 
        public Exit(int key, String name, StartUI ui) {
@@ -212,5 +215,5 @@ public class StartUI {
             System.out.println("Выбран пункт меню 6. Выход из программы. До свидания");
             this.ui.stop();
         }
-    }
+    }*/
 }
